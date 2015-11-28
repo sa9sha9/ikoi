@@ -183,9 +183,9 @@ function plotpoint() {
 
     //[緯度,経度]、名前、憩い度、来訪者、設備数、特徴数、コメント、URL
     var arrayTable = [
-            ["37.49373,139.91981", "スーパー川崎の休憩所", 4,40, [2,4], [1,2], "cm","url"],
+            ["37.49373,139.91981", "スーパー川崎の休憩所", 4,40, [3,4,5], [1,2,3], "cm","url"],
             ["37.50173,139.92481", "松島公園", 4,59, [1,4], [1,3], "cm","url"],
-            ["37.48273,139.93181", "金次郎像前休憩スペース", 1,9, [2,4], [2,4],"cm","url"],
+            ["37.48273,139.93181", "金次郎像前休憩スペース", 1,9, [2,4], [2,4,3],"cm","url"],
             ["37.49973,139.93981", "会津大学食堂",2,12, [1,3], [1,2], "cm","url"],
             ["37.49723,139.93081", "土管が３つある空き地", 3, 31, [1,4], [3,5], "cm","url"]
         ];
@@ -199,6 +199,7 @@ function plotpoint() {
         var myLatlng = new google.maps.LatLng(latlng[0], latlng[1]);
 
         if(arrayTable[i][3]>30){ //来訪者が30人以上のとき
+            //名前
             content = '<h4>' + arrayTable[i][1] + '</h4>';
             //星(憩い度)
             content += '<p>憩い度：';
@@ -206,12 +207,25 @@ function plotpoint() {
                 content += '<img width="32" height="32" src="./images/star.png">';
             }
             content += '<br/>';
+            //訪問者数
             content += '訪問者数：' + arrayTable[i][3] + '人<br/>' 
+            //設備
             content += '設備：';
-            content += switchEquipment(arrayTable[i][4]);
-            content += '<br/>' + '特徴：[静] [広]<br/>' + 'Comment：<br/> ~~~~~~ <br/></p>';
+            var arr = arrayTable[i][4];
+            for(j=0;j<arr.length;j++){
+                content += switchEquipment(arr[j]);
+            }
+            content += '<br/>'
+            //特徴
+            content += '特徴：'
+            arr = arrayTable[i][5];
+            for(j=0;j<arr.length;j++){
+                content += switchFeature(arr[j]);
+            }
+            content += '<br/>';
+            content += 'Comment：<br/> ~~~~~~ <br/></p>';
             status = 0;
-        }else{
+        }else{ //30人未満のとき
             content = '<h4>' + arrayTable[i][1] + '</h4>';
             //星(憩い度)
             content += '<p>憩い度：';
@@ -220,34 +234,71 @@ function plotpoint() {
             }
             content += '<br/>';
             content += '訪問者数：' + arrayTable[i][3] + '人<br/>' 
+            //設備
             content += '設備：';
-            content += switchEquipment(arrayTable[i][4]);
-            content += '<br/>' + '特徴：[静] [広]<br/>' + 'Comment：<br/> ~~~~~~ <br/></p>';
+            arr = arrayTable[i][4];
+            for(j=0;j<arr.length;j++){
+                content += switchEquipment(arr[j]);
+            }
+            content += '<br/>';
+            //特徴
+            content += '特徴：';
+            arr = arrayTable[i][5];
+            for(j=0;j<arr.length;j++){
+                content += switchFeature(arr[j]);
+            }
+            content += '<br/>';
+            content += 'Comment：<br/> ~~~~~~ <br/></p>';
             status = 1;
         }
         createMarker(myLatlng, content, mapMaster, status);
     }
 }
 
-function switchEquipment($arr){
-    for(var $key in $arr){
-        alert($key);
-        switch($key){
+function switchEquipment(key){
+        switch(key){
             case 0:
-                content += '';
+                return '';
+                break;
             case 1:
-                content += '<img width="32" height="32" src="./images/hamburger.png">';
+                return '<img width="32" height="32" src="./images/hamburger.png">';
+                break;
             case 2:
-                content += '<img width="32" height="32" src="./images/drink.png">';
+                return '<img width="32" height="32" src="./images/drink.png">';
+                break;
             case 3:
-                content += '<img width="32" height="32" src="./images/sleep.png">';
+                return '<img width="32" height="32" src="./images/sleep.png">';
+                break;
             case 4:
-                content += '<img width="32" height="32" src="./images/book.png">';
+                return '<img width="32" height="32" src="./images/book.png">';
+                break;
             case 5:
-                content += '<img width="32" height="32" src="./images/pencil.png">';
-                
+                return '<img width="32" height="32" src="./images/pencil.png">';
+                break;
         }
-    }
+}
+
+function switchFeature(key){
+        switch(key){
+            case 0:
+                return '';
+                break;
+            case 1:
+                return '[静]';
+                break;
+            case 2:
+                return '[広]';
+                break;
+            case 3:
+                return '[洒]';
+                break;
+            case 4:
+                return '[落]';
+                break;
+            case 5:
+                return '[楽]';
+                break;
+        }
 }
 
 function createMarker(latlng, content, map, status) {
