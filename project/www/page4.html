@@ -1,0 +1,56 @@
+<ons-page>
+
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center">報告</div>
+    </ons-toolbar>
+
+    <ons-list>
+        <ons-list-header>出陣中の拠点</ons-list-header>
+        <ons-list-item id="sample_report1">
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;MAばあさんの家&nbsp;&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="outline" onclick="open_modal_report()">報告する</ons-button><br />2015/08/09 10:30 出陣<br />完了期限 2015/08/09 13:30
+        </ons-list-item>
+        <ons-list-item>
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;伴野パラダイス&nbsp;&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="outline" onclick="open_modal_report()">報告する</ons-button><br />2015/08/09 08:30 出陣<br />完了期限 2015/08/09 12:30
+        </ons-list-item>
+        
+        <ons-list-header>報告中の拠点</ons-list-header>
+        <ons-list-item id="sample_report2" style="display:none;">
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;MAばあさんの家&nbsp;&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="outline" onclick="open_modal_authorize()">認証コード入力</ons-button><br />2015/08/09 15:30 報告済</ons-list-item>
+        <ons-list-item>
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;○○家の墓&nbsp;&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="outline" onclick="open_modal_authorize()">認証コード入力</ons-button><br />2015/08/08 15:43 報告済</ons-list-item>
+        
+        <ons-list-header>報告が完了した拠点</ons-list-header>
+        <ons-list-item id="sample_report3" style="display:none;">
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;MAばあさんの家&nbsp;&nbsp;&nbsp;&nbsp;<br />2015/08/09 15:30 報告完了
+        </ons-list-item>
+        <ons-list-item>
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;○○森林公園<br />2015/08/07 09:58 報告完了
+        </ons-list-item>
+        <ons-list-item>
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;○○城<br />2015/08/08 18:30 報告完了
+        </ons-list-item>
+    </ons-list>
+    
+    <ons-modal var="modal_report">
+        <h4>戦闘終了を報告しますか？</h4>
+        <ons-button modifier="cta" onclick="do_report()">報告する</ons-button>&nbsp;&nbsp;&nbsp;
+        <ons-button modifier="cta" onclick="close_modal_report()">キャンセル</ons-button>
+    </ons-modal>
+    
+    <ons-modal var="modal_authorize">
+        <h4>認証コードを入力し、拠点を評価してください</h4>
+        <input class="text-input" id="my-input"><br /><br />
+        <ons-button modifier="cta" onclick="do_authorize()"><i class="fa fa-thumbs-o-up fa-lg" style="color: #666"></i>良い</ons-button>&nbsp;&nbsp;&nbsp;
+        <ons-button modifier="cta" onclick="close_modal_authorize()"><i class="fa fa-thumbs-o-down fa-lg" style="color: #666"></i>良くない</ons-button><br /><br />
+        <ons-button modifier="cta" onclick="close_modal_authorize()">キャンセル</ons-button>
+    </ons-modal>
+    
+
+</ons-page>

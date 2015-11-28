@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>JavaScript SDK クイックスタート（ブラウザ版）</title>
+</head>
+<!-- 1.SDKの読み込み -->
+<script type="text/javascript" src="ncmb_js/ncmb.min.js" charset="utf-8"></script>
+
+<body>
+    <script>
+        // 2. mobile backendアプリとの連携
+        var appkey = "23e828 f381fab4499ca231237f746ce3737e67040663d54aabcbd9188cb004e5";
+        var clientkey = "aa6cf5d76a0f30a0d33795c04146cab29b33f8e75cbf37f339d654f1b60a7451";
+
+        var ncmb = new NCMB(appkey, clientkey);
+
+        // TestClassの作成
+        var TestClass = ncmb.DataStore("TestClass");
+        // 3.TestClassへの入出力
+        TestClass.equalTo("message", "Hello, NCMB!")
+            .fetchAll()
+            .then(function (results) {
+                if (results[0] != null) {
+                    alert(results[0].get("message"));
+                } else {
+                    var testClass = new TestClass();
+                    testClass.set("message", "Hello, NCMB!");
+                    testClass.save()
+                        .then(function () {
+                            alert("message is saved.");
+                        })
+                        .catch(function (err) {
+                            alert(err.text);
+                        });
+                }
+            })
+            .catch(function (err) {
+                alert(err.text);
+            });
+    </script>
+</body>
+
+</html>

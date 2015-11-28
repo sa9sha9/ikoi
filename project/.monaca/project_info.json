@@ -1,0 +1,19 @@
+{
+    "plugins": [
+        "mobi.monaca.plugins.Monaca",
+        "org.apache.cordova.splashscreen"
+    ],
+    "framework_version": "3.5",
+    "xcode_version": "6",
+    "cordova_version": "4.1",
+    "plugin_settings": [],
+    "title-ja": "ikoi",
+    "title-en": "",
+    "description-ja": "ikoitest",
+    "description-en": "",
+    "category": "User Template",
+    "platform": [
+        "ios"
+    ],
+    "name": "generated-1448676637-55c86725fd1734283a17641a"
+}

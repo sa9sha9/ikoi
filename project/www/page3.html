@@ -1,0 +1,81 @@
+<ons-page>
+
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center">プロファイル</div>
+    </ons-toolbar>
+    
+    
+    <ons-list>
+        <ons-list-item style="text-align:center;">ユーザー</ons-list-item>
+        <ons-list-item style="padding:20px;text-align:center;">
+            <img src="https://scontent.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11227381_1395936740733698_9087127374302706450_n.jpg?oh=0ebdcbac0941a5b4fb0141f605ec0c2b&oe=563F8806" height="90" onclick="open_modal('user')" />
+        </ons-list-item>
+        <ons-list-item style="text-align:center;">所属チーム</ons-list-item>
+        <ons-list-item style="padding:20px;text-align:center;">
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ7dPAijtJAm0iqLeFqy5sy7GpS1QWl8VYRGlPOuo-vSkecOW6WkA" height="90" onclick="open_modal('team')" />
+        </ons-list-item>
+        <ons-list-item style="text-align:center;">ユーザーLV</ons-list-item>
+        <ons-list-item style="padding:20px;text-align:center;">
+            <ons-icon icon="fa-linux" style="color: #666" size="60px"></ons-icon>&nbsp;
+            <ons-icon icon="fa-linux" style="color: #666" size="60px"></ons-icon>&nbsp;
+            <ons-icon icon="fa-linux" style="color: #666" size="60px"></ons-icon>
+        </ons-list-item>
+        <ons-list-item style="text-align:center;">称号</ons-list-item>
+        <ons-list-item style="padding:20px;text-align:center;">
+            <img src="https://lh6.googleusercontent.com/9p6y_ilPAPsxK43Na3K21HdvRJJ1BPfLtGXscj5ptgaSzZK-tGBYMnGcx7Swg5vrlSDuCA=s190" height="70" onclick="open_modal('title')" />
+        </ons-list-item>
+        <ons-list-item style="text-align:center;">評価</ons-list-item>
+        <ons-list-item style="padding:20px;text-align:center;">
+            <i class="fa fa-thumbs-o-up fa-lg" style="color: #666"></i>&nbsp;14&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down fa-lg" style="color: #666"></i>&nbsp;3</ons-list-item>
+        </ons-list-item>
+        <ons-list-item style="text-align:center;">獲得バッジ</ons-list-item>
+        <ons-list-item style="padding:20px;text-align:center;">
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-github-alt" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-paw" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-gamepad" style="color: #666" size="60px"></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-globe" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-flag-o" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-photo" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-cubes" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-cloud" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-male" style="color: #666" size="60px"></ons-icon></a>&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="open_modal('badge')"><ons-icon icon="fa-bell-o" style="color: #666" size="60px"></ons-icon></a>
+        </ons-list-item>
+    </ons-list>
+    
+    <ons-modal var="modal">
+        <div id="modal_user" style="display:none;">
+            <img src="https://scontent.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11227381_1395936740733698_9087127374302706450_n.jpg?oh=0ebdcbac0941a5b4fb0141f605ec0c2b&oe=563F8806" height="200" />
+            <h2>さくらい♡</h2>
+            <p style="margin-left:auto;margin-right:auto;width:60%;">会津大学1年生でありながら、会津WOSチームリーダー。要するに希望の星。がんばれ若人。</p>
+            <ons-button modifier="cta" onclick="close_modal('user')">閉じる</ons-button>
+        </div>
+        <div id="modal_team" style="display:none;">
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ7dPAijtJAm0iqLeFqy5sy7GpS1QWl8VYRGlPOuo-vSkecOW6WkA" />
+            <h2>会津WOS ～そんな装備で大丈夫か？～</h2>
+            <p style="margin-left:auto;margin-right:auto;width:60%;">
+                雪との戦いに赴こうとする一行だが、その手に握る武器は古代ギリシャを思わせるような様式美溢れるシャベルだった。<br />
+                そんな彼に対し、「そんな装備で大丈夫か？」と町内会長は問いかけるが、「大丈夫だ、問題ない」と一行は自信満々な様子で返す。<br /><br />
+                しかし、戦いの地に降り立った一行は記録的な雪の前に敗北を喫してしまう。絶望の表情を浮かべる一向だが、「神は言っている、ここで死ぬ運命ではないと・・・」という謎のナレーションが入り、時間が巻き戻される。<br /><br />
+                再び「そんな装備で大丈夫か？」と問いかける町内会長に、一行は「一番いいのを頼む」と返すのだった―――。
+            </p>
+            <ons-button modifier="cta" onclick="close_modal('team');">閉じる</ons-button>
+        </div>
+        <div id="modal_badge" style="display:none;">
+            <ons-icon icon="fa-github-alt" style="color: #ccc" size="120px"></ons-icon>
+            <h2>上級切り込み隊長</h2>
+            <p style="margin-left:auto;margin-right:auto;width:60%;">拠点からの救援アラートに対して、30分以内に出陣した回数が100回を超えた場合に与えられます。</p>
+            <ons-button modifier="cta" onclick="close_modal('badge')">閉じる</ons-button>
+        </div>
+        <div id="modal_title" style="display:none;">
+            <img src="https://lh6.googleusercontent.com/9p6y_ilPAPsxK43Na3K21HdvRJJ1BPfLtGXscj5ptgaSzZK-tGBYMnGcx7Swg5vrlSDuCA=s190" />
+            <h2>足軽小頭</h2>
+            <p style="margin-left:auto;margin-right:auto;width:60%;">もとはただの足軽だったが、功績を立てたため小頭に出世した。最近調子に乗っているため部下からの信頼は薄い。</p>
+            <ons-button modifier="cta" onclick="close_modal('title')">閉じる</ons-button>
+        </div>
+    </ons-modal>
+
+</ons-page>

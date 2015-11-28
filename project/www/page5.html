@@ -1,0 +1,32 @@
+<ons-page>
+
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center">応援情報</div>
+    </ons-toolbar>
+
+    <ons-list>
+        <ons-list-header>応援要請一覧</ons-list-header>
+        <ons-list-item>
+            <i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;神々の庭&nbsp;&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="outline" onclick="open_modal_collaborate()" id="help_sample1">馳せ参じる</ons-button><br />
+            <span style="display:none;" id="help_sample2"><i class="fa fa-user fa-lg" style="color: #666"></i>さくらい♡ が出陣中！<br /></span>
+            <i class="fa fa-user fa-lg" style="color: #666"></i>チーム鈴木 が出陣中！<br />
+            <i class="fa fa-user fa-lg" style="color: #666"></i>わっぱめしマスター が出陣中！
+        </ons-list-item>
+        <ons-list-item><i class="fa fa-university fa-lg" style="color: #666"></i>&nbsp;&nbsp;合コンの聖地&nbsp;&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="outline" onclick="open_modal_collaborate()">馳せ参じる</ons-button><br />
+            <i class="fa fa-user fa-lg" style="color: #666"></i>キング徳納 が出陣中！<br />
+            <i class="fa fa-user fa-lg" style="color: #666"></i>変人募集中チーム が出陣中！
+        </ons-list-item>
+    </ons-list>
+    
+    <ons-modal var="modal_collaborate">
+        <h4>この拠点での戦に参戦しますか？</h4>
+        <ons-button modifier="cta" onclick="do_collaborate()">参戦する</ons-button>&nbsp;&nbsp;&nbsp;
+        <ons-button modifier="cta" onclick="close_modal_collaborate()">参戦しない</ons-button>
+    </ons-modal>
+
+</ons-page>

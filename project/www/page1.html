@@ -1,0 +1,61 @@
+<ons-navigator>
+    <ons-page id="page1">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()">
+                    <ons-icon icon="bars"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center">IKOIマップ</div>
+        </ons-toolbar>
+
+       <!-- Google Map Canvas -->
+        <div id="map_canvas" style="width:100%; height:100%"></div>
+    
+<!--
+        <div style="text-align:left;width:100%; height:8%;padding:10px;">
+            凡例
+            <br />
+            <img src="./images/castle.png" />&nbsp;&nbsp;&nbsp;&nbsp;除雪済みの拠点&nbsp;&nbsp;&nbsp;&nbsp;
+            <img src="./images/castle_red.png" />&nbsp;&nbsp;&nbsp;&nbsp;除雪対象拠点&nbsp;&nbsp;&nbsp;&nbsp;
+            <img src="./images/castle_yellow.png" />&nbsp;&nbsp;&nbsp;&nbsp;応援要請中の拠点
+        </div>
+-->
+
+<!--
+        <div style="text-align:left;width:100%; height:8%;padding:10px;">
+            スポンサー企業
+            <br />
+            <ons-button modifier="cta" onclick="open_modal_sponsor()">福島なんとかテレビ</ons-button>
+            <ons-button modifier="cta" onclick="open_modal_sponsor()">リ○ルートホールディングス</ons-button>
+            <ons-button modifier="cta" onclick="open_modal_sponsor()">ソフト○ンクモバイル</ons-button>
+        </div>
+
+        <ons-modal var="modal_sponsor">
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRf4qdJsy58Q49P_Qh5dIQhsiMrrUw7aslhswnU487PsOQmGyCqnQ" height="200" />
+            <h2>福島なんとかテレビ</h2>
+            <p style="margin-left:auto;margin-right:auto;width:60%;">「なんとか」は決して伏せ字ではなく、経営難のため自転車操業でなんとか回っているテレビ局。従業員への未払い給与が約4か月溜まっており、近々組合による訴訟が予定されている。</p>
+            <h2>提供賞品</h2>
+            <h4>iPad mini</h4>
+            <img src="http://ipadkaitori2.blog.so-net.ne.jp/_images/blog/_f7c/ipadkaitori2/apple-ipad-mini-white.jpg" height="150" />
+            <p style="margin-left:auto;margin-right:auto;width:60%;">従業員の給与を削ってまで用意した賞品。
+                <br />まず経営難を何とかしろ。</p>
+            <ons-button modifier="cta" onclick="close_modal_sponsor()">閉じる</ons-button>
+        </ons-modal>
+-->
+
+<!--
+        <ons-modal var="modal_attack">
+            <h4>この拠点に出陣しますか？</h4>
+            <ons-button modifier="cta" onclick="close_modal_attack()">出陣する</ons-button>&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="cta" onclick="close_modal_attack()">出陣しない</ons-button>
+        </ons-modal>
+
+        <ons-modal var="modal_help">
+            <h4>この拠点の援護に向かいますか？</h4>
+            <ons-button modifier="cta" onclick="close_modal_help()">馳せ参じる</ons-button>&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="cta" onclick="close_modal_help()">やっぱりやめる</ons-button>
+        </ons-modal>
+-->
+    </ons-page>
+</ons-navigator>
