@@ -1,25 +1,19 @@
 <ons-page>
-<div class="favorite">
+<div id="page2">
     <ons-toolbar>
+       <!--ハンバーガーアイコン-->
         <div class="left">
-            <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+            <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()">
+                <ons-icon icon="bars"></ons-icon>
+            </ons-toolbar-button>
         </div>
         <div class="center">Favorite Places</div>
     </ons-toolbar>
     
-    <ons-list>
+    <ons-list class="favorite">
         <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
-        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>鶴ヶ城前休憩所</ons-list-item>
+        <ons-list-item><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>スーパー川崎休憩所</ons-list-item>
+        <ons-list-item class="appear" style="display:none;"><i class="fa fa-map-marker fa-lg" style="color: #666">　</i>松代前公園</ons-list-item> <!--@@-->
     </ons-list>
     </div>
 </ons-page>

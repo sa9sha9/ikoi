@@ -5,141 +5,79 @@ $(document).on("pageinit", "#page1", function () {
 });
 
 
+/* 登録modalの呼び出し */
+function open_modal_resister(){
+    modal_resisite.show();
+}
+
+function close_modal_resister() {
+    modal_resister.hide();
+}
+
 
 /*-----------------
   報告modalの呼び出し
 -----------------*/
-function open_modal_report() {
-    modal_report.show();
-}
-
-function close_modal_report() {
-    modal_report.hide();
-}
-
-function do_report() {
-    modal_report.hide();
-    $("#sample_report1").hide("slow", function () {
-        $("#sample_report2").show("slow");
-    });
-}
-
-/*-----------------
-  認証modalの呼び出し
------------------*/
-function open_modal_authorize() {
-    modal_authorize.show();
-}
-
-function close_modal_authorize() {
-    modal_authorize.hide();
-}
-
-function do_authorize() {
-    modal_authorize.hide();
-    $("#sample_report2").hide("slow", function () {
-        $("#sample_report3").show("slow");
-    });
-}
+//function open_modal_report() {
+//    modal_report.show();
+//}
+//
+//function close_modal_report() {
+//    modal_report.hide();
+//}
+//
+//function do_report() {
+//    modal_report.hide();
+//    $("#sample_report1").hide("slow", function () {
+//        $("#sample_report2").show("slow");
+//    });
+//}
 
 /*-----------------
   応援modalの呼び出し
 -----------------*/
-function open_modal_collaborate() {
-    modal_collaborate.show();
-}
-
-function close_modal_collaborate() {
-    modal_collaborate.hide();
-}
-
-function do_collaborate() {
-    modal_collaborate.hide();
-    $("#help_sample1").hide("fast", function () {
-        $("#help_sample2").show("slow");
-    });
-}
-
-/*-----------------
-  プロファイルでのmodalの呼び出し
------------------*/
-function open_modal(target) {
-    switch (target) { //targetによって、開く対象をスイッチする
-    case "user":
-        modal.show();
-        $("#modal_user").show();
-        break;
-    case "team":
-        modal.show();
-        $("#modal_team").show();
-        break;
-    case "title":
-        modal.show();
-        $("#modal_title").show();
-        break;
-    case "badge":
-        modal.show();
-        $("#modal_badge").show();
-        break;
-    }
-}
-
-function close_modal(target) {
-    switch (target) { //targetによって、閉じる対象をスイッチする
-    case "user":
-        modal.hide();
-        $("#modal_user").hide();
-        break;
-    case "team":
-        modal.hide();
-        $("#modal_team").hide();
-        break;
-    case "title":
-        modal.hide();
-        $("#modal_title").hide();
-        break;
-    case "badge":
-        modal.hide();
-        $("#modal_badge").hide();
-        break;
-    }
-}
-
-
-
-/*-----------------
-  スポンサーmodalの呼び出し
------------------*/
-//function open_modal_sponsor() {
-//    modal_sponsor.show();
+//function open_modal_collaborate() {
+//    modal_collaborate.show();
 //}
 //
-//function close_modal_sponsor() {
-//    modal_sponsor.hide();
-//}
-
-/*-----------------
-  攻撃modalの呼び出し
------------------*/
-//function open_modal_attack() {
-//    modal_attack.show();
+//function close_modal_collaborate() {
+//    modal_collaborate.hide();
 //}
 //
-//function close_modal_attack() {
-//    modal_attack.hide();
+//function do_collaborate() {
+//    modal_collaborate.hide();
+//    $("#help_sample1").hide("fast", function () {
+//        $("#help_sample2").show("slow");
+//    });
 //}
 
 
 /*-----------------
-  応援modalの呼び出し
+  お気に入りmodalの呼び出し
 -----------------*/
-//function open_modal_help() {
-//    modal_help.show();
-//}
-//
-//function close_modal_help() {
-//    modal_help.hide();
-//}
+function open_modal_favorite() {
+    modal_favorite.show();
+}
+
+function close_modal_favorite() {
+    modal_favorite.hide();
+}
+
+function do_favorite() {
+    modal_favorite.hide();
+    $(".appear").show("fast"); //@@
+    open_modal_complete();
+}
+
+/* 完了確認modalの呼び出し*/
+function open_modal_complete() {
+    modal_complete.show();
+}
+
+function close_modal_complete() {
+    modal_complete.hide();
+}
+
 
 
 //====Google Map API=====//
@@ -197,7 +135,6 @@ function plotpoint() {
     for(var i=0;i<limit;i++){
         var latlng = arrayTable[i][0].split(',');
         var myLatlng = new google.maps.LatLng(latlng[0], latlng[1]);
-
         if(arrayTable[i][3]>30){ //来訪者が30人以上のとき
             //名前
             content = '<h4>' + arrayTable[i][1] + '</h4>';
@@ -224,7 +161,8 @@ function plotpoint() {
             }
             content += '<br/>';
             content += 'Comment：<br/> ~~~~~~ <br/></p>';
-            status = 0;
+            content += '<img width="32" height="32" src="./images/check.png" onclick="open_modal_favorite()" />';
+            status = 1;
         }else{ //30人未満のとき
             content = '<h4>' + arrayTable[i][1] + '</h4>';
             //星(憩い度)
@@ -249,12 +187,14 @@ function plotpoint() {
             }
             content += '<br/>';
             content += 'Comment：<br/> ~~~~~~ <br/></p>';
-            status = 1;
+            content += '<img width="32" height="32" src="./images/check.png" onclick="open_modal_favorite()" />';
+            status = 0;
         }
         createMarker(myLatlng, content, mapMaster, status);
     }
 }
 
+/*該当する設備を格納*/
 function switchEquipment(key){
         switch(key){
             case 0:
@@ -278,6 +218,7 @@ function switchEquipment(key){
         }
 }
 
+/*該当する特徴を格納*/
 function switchFeature(key){
         switch(key){
             case 0:
@@ -301,6 +242,7 @@ function switchFeature(key){
         }
 }
 
+/*マーカーを描画*/
 function createMarker(latlng, content, map, status) {
 
     var icon_img = "";

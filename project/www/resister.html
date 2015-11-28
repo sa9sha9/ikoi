@@ -1,0 +1,37 @@
+<ons-page>
+    <ons-toolbar>
+        <!-- ハンバーガーアイコン-->
+        <div class="left">
+            <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()">
+                <ons-icon icon="bars"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center">Resister</div>
+    </ons-toolbar>
+
+
+
+    <div style="text-align: center">
+        <br/>
+        <ons-button onclick="find()">
+            スポットを検索
+        </ons-button>
+        <br/>
+        <br/>
+        <ons-button onclick="open_modal_resister()">
+            スポットを登録
+        </ons-button>
+    </div>
+
+   
+   <!--modal-->
+    <ons-modal var="modal_register">
+            <h4>この地点を憩いの地として報告します。</h4>
+            <p>1.スポット名を入力</p>
+            <input id="name" type="text" class="text-input" ng-model="text" placeholder="スポット名" style="display: block; width: 100%">
+            <br/>
+            <ons-button modifier="cta" onclick="saveSpot()">登録する</ons-button>&nbsp;&nbsp;&nbsp;
+            <ons-button modifier="cta" onclick="close_modal_resister()">やっぱりやめる</ons-button>
+    </ons-modal>
+
+</ons-page>
