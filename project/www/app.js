@@ -4,6 +4,8 @@ $(document).on("pageinit", "#page1", function () {
     dataset();
 });
 
+arrayTable = [];
+
 
 /*-----------------
   報告modalの呼び出し
@@ -103,46 +105,47 @@ function mapinitialize() {
   plotpoint関数
 -----------------*/
 function plotpoint() {
-    var arrayTable = [
-    //[緯度,経度]、名前、憩い度、来訪者、設備数、特徴数、コメント、URL
-//    arrayTable = place_search();
-//    console.log(arrayTable);
+    place_search();
+}
 
-            {"latlng":"37.49373,139.91981", "name":"スーパー川崎の休憩所", "star":4, "people":40, "equipment":[3, 4, 5], "feature":[1, 2, 3], "comment":"cm", "url":"url"},
-            {"latlng":"37.50173,139.92481", "name":"松島公園", "star":4, "people":59, "equipment":[1, 4], "feature":[1, 3], "comment":"cm", "url":"url"},
-            {"latlng":"37.48273,139.93181", "name":"金次郎像前休憩スペース", "star":1, "people":9, "equipment":[2, 4], "feature":[2, 4, 3], "comment":"cm", "url":"url"},
-            {"latlng":"37.49973,139.93981", "name":"会津大学食堂", "star":2, "people":12, "equipment":[1, 3], "feature":[1, 2], "comment":"cm", "url":"url"},
-            {"latlng":"37.49723,139.93081", "name":"３つの土管がある空き地", "star":3, "people":31, "equipment":[1, 4], "feature":[3, 5], "comment":"cm","url": "url"},
-        ];
+function plotpoint2(){
+    //[緯度,経度]、名前、憩い度、来訪者、設備数、特徴数、コメント、URL
+//
+//            {"latlng":"37.49373,139.91981", "name":"スーパー川崎の休憩所", "star":4, "people":40, "equipment":[3, 4, 5], "feature":[1, 2, 3], "comment":"cm", "url":"url"},
+//            {"latlng":"37.50173,139.92481", "name":"松島公園", "star":4, "people":59, "equipment":[1, 4], "feature":[1, 3], "comment":"cm", "url":"url"},
+//            {"latlng":"37.48273,139.93181", "name":"金次郎像前休憩スペース", "star":1, "people":9, "equipment":[2, 4], "feature":[2, 4, 3], "comment":"cm", "url":"url"},
+//            {"latlng":"37.49973,139.93981", "name":"会津大学食堂", "star":2, "people":12, "equipment":[1, 3], "feature":[1, 2], "comment":"cm", "url":"url"},
+//            {"latlng":"37.49723,139.93081", "name":"３つの土管がある空き地", "star":3, "people":31, "equipment":[1, 4], "feature":[3, 5], "comment":"cm","url": "url"},
+//        ];
 
     var limit = 6;
     var content = "";
     var status;
 
     for (var i = 0; i < limit; i++) {
-        var latlng = arrayTable[i]['latlng'].split(',');
-        var myLatlng = new google.maps.LatLng(latlng[0], latlng[1]);
-        if (arrayTable[i]['people'] > 30) { //来訪者が30人以上のとき
+//        var latlng = arrayTable[i]['latlng'].split(',');
+        var myLatlng = new google.maps.LatLng(arrayTable[i].latlng.latitude, arrayTable[i].latlng.longitude);
+        if (arrayTable[i].people > 20) { //来訪者が30人以上のとき
             //名前
-            content = '<h4>' + arrayTable[i]['name'] + '</h4>';
+            content = '<h4>' + arrayTable[i].name + '</h4>';
             //星(憩い度)
             content += '<p>憩い度：';
-            for (var j = arrayTable[i]['star']; j >= 0; j--) {
+            for (var j = arrayTable[i].star; j > 0; j--) {
                 content += '<img width="32" height="32" src="./images/star.png">';
             }
             content += '<br/>';
             //訪問者数
-            content += '訪問者数：' + arrayTable[i]['people'] + '人<br/>'
+            content += '訪問者数：' + arrayTable[i].people + '人<br/>'
                 //設備
             content += '設備：';
-            var arr = arrayTable[i]['equipment'];
+            var arr = arrayTable[i].equipment;
             for (j = 0; j < arr.length; j++) {
                 content += switchEquipment(arr[j]);
             }
             content += '<br/>'
                 //特徴
             content += '特徴：'
-            arr = arrayTable[i]['feature'];
+            arr = arrayTable[i].feature;
             for (j = 0; j < arr.length; j++) {
                 content += switchFeature(arr[j]);
             }
@@ -151,24 +154,24 @@ function plotpoint() {
             content += '<img width="32" height="32" src="./images/check.png" onclick="open_modal_favorite()" />';
             status = 1;
         } else { //30人未満のとき
-            content = '<h4>' + arrayTable[i]['name'] + '</h4>';
+            content = '<h4>' + arrayTable[i].name + '</h4>';
             //星(憩い度)
             content += '<p>憩い度：';
-            for (var j = arrayTable[i]['star']; j >= 0; j--) {
+            for (var j = arrayTable[i].star; j > 0; j--) {
                 content += '<img width="32" height="32" src="./images/star.png">';
             }
             content += '<br/>';
-            content += '訪問者数：' + arrayTable[i]['people'] + '人<br/>'
+            content += '訪問者数：' + arrayTable[i].people + '人<br/>'
                 //設備
             content += '設備：';
-            arr = arrayTable[i]['equipment'];
+            arr = arrayTable[i].equipment;
             for (j = 0; j < arr.length; j++) {
                 content += switchEquipment(arr[j]);
             }
             content += '<br/>';
             //特徴
             content += '特徴：';
-            arr = arrayTable[i]['feature'];
+            arr = arrayTable[i].feature;
             for (j = 0; j < arr.length; j++) {
                 content += switchFeature(arr[j]);
             }
@@ -303,3 +306,4 @@ function createMarker(latlng, content, map, status) {
 //        }
 //    );
 //}
+
