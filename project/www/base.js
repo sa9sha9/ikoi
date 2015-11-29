@@ -9,17 +9,14 @@ $(function(){
     NCMB.initialize(apikey,clientkey);
 });
 
-//起動時にmobile backend APIキーを設定
-//var ncmb = new NCMB(apikey, clientkey);
 
-function place_search() { //サーチ内容をハッシュの形で渡す
+function place_search() { 
     /*クエリの作成*/
     var place = NCMB.Object.extend("place");
     //NCMB.Queryを作成
     var query = new NCMB.Query(place);
     geoPoint = new NCMB.GeoPoint(37.49473, 139.92981);
-    query.withinKilometers("latlng", geoPoint, 5); //current.distance以内のlatlngのもの
-
+    query.withinKilometers("latlng", geoPoint, 10); //current.distance以内のlatlngのもの
         //位置情報をもとに検索する条件を設定
         //var geoPoint = new ncmb.GeoPoint(37.000000,138.0000000);
         //place.withinKilometers("latlng", geoPoint, 5);
