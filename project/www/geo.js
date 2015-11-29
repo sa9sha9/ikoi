@@ -37,34 +37,28 @@ function search(current){
     var query = new NCMB.Query(place);
     //位置情報をもとに検索する条件を設定
     var geoPoint = new NCMB.GeoPoint(current.geopoint.latitude,current.geopoint.longitude);
-    query.withinKilometers("geo", geoPoint, current.distance);
+    query.withinKilometers("latlng", geoPoint, current.distance); //current.distance以内のlatlngのもの
 
     //mobile backend上のデータ検索を実行する
     query.find({
         success: function(points) {
-        ///////////////// ここから変更部分 ////////////////////
             // 検索が成功した場合の処理
-    
             //Google mapの設定
             var mapOptions = {
                   //中心地設定
                   center: new google.maps.LatLng(current.geopoint.latitude,current.geopoint.longitude),
-                  //ズーム設定
-                  zoom: 15,
                   //地図のタイプを指定
                   mapTypeId: google.maps.MapTypeId.ROADMAP
+                  //ズーム設定
+                  zoom: 15,
                 };
     
             //idがmap_canvasのところにGoogle mapを表示
-            var map = new google.maps.Map(document.getElementById("map_canvas"),
-                mapOptions);
-    
-            for (var i = 0; i < points.length; i++){
-                var point = points[i];
-                console.log("<p>店名：" + point.get("name") + "</p>");
-    
-                //位置情報オブジェクトを作成            
-                var location = point.get("geo");
+            var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            
+
+                //位置情報オブジェクトを作成
+                var location = point.get("latlng");
                 var myLatlng = new google.maps.LatLng(location.latitude,location.longitude);
     
                 //店舗名、位置情報、Google mapオブジェクトを指定してマーカー作成メソッドを呼び出し
@@ -94,8 +88,9 @@ function search(current){
 }
 
 }
-
-//スポットを登録する
+/*=======================
+/====スポットを登録する====
+=======================*/
 function saveSpot(){
     //位置情報が取得できたときの処理
     var onSuccess = function (location){
@@ -133,15 +128,3 @@ function saveSpot(){
     //位置情報を取得
     navigator.geolocation.getCurrentPosition(onSuccess, onError, option);
 }
-
-
-
-
-//
-//var origin = new ncmb.GeoPoint(0, 0);
-//
-////検索開始位置と距離をキロメートルで指定
-//near("location", origin)
-//
-////検索開始位置と距離をキロメートルで指定
-//withinKilometers("location", origin, 1000)

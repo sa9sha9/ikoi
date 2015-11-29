@@ -5,16 +5,6 @@ $(document).on("pageinit", "#page1", function () {
 });
 
 
-/* 登録modalの呼び出し */
-function open_modal_resister(){
-    modal_resisite.show();
-}
-
-function close_modal_resister() {
-    modal_resister.hide();
-}
-
-
 /*-----------------
   報告modalの呼び出し
 -----------------*/
@@ -33,28 +23,21 @@ function close_modal_resister() {
 //    });
 //}
 
-/*-----------------
-  応援modalの呼び出し
------------------*/
-//function open_modal_collaborate() {
-//    modal_collaborate.show();
-//}
-//
-//function close_modal_collaborate() {
-//    modal_collaborate.hide();
-//}
-//
-//function do_collaborate() {
-//    modal_collaborate.hide();
-//    $("#help_sample1").hide("fast", function () {
-//        $("#help_sample2").show("slow");
-//    });
-//}
-
 
 /*-----------------
-  お気に入りmodalの呼び出し
+-------modal-------
 -----------------*/
+/* 登録modalの呼び出し */
+function open_modal_resister() {
+    modal_resisite.show();
+}
+
+function close_modal_resister() {
+    modal_resister.hide();
+}
+
+
+/* お気に入りmodalの呼び出し*/
 function open_modal_favorite() {
     modal_favorite.show();
 }
@@ -65,7 +48,6 @@ function close_modal_favorite() {
 
 function do_favorite() {
     modal_favorite.hide();
-    $(".appear").show("fast"); //@@
     open_modal_complete();
 }
 
@@ -104,9 +86,12 @@ function dataset() {
 function mapinitialize() {
 
     var mapOption = {
-        center: new google.maps.LatLng(37.49473, 139.92981), // 地図の場所
-        mapTypeId: google.maps.MapTypeId.ROADMAP, // 地図の種類
-        zoom: 15 // 地図の縮尺
+        //中心設定
+        center: new google.maps.LatLng(37.49473, 139.92981),
+        //地図の種類
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        //地図の縮尺
+        zoom: 15
     };
 
     //Mapクラスの作成と地図の描画
@@ -115,74 +100,76 @@ function mapinitialize() {
 }
 
 /*-----------------
-  plotpoint関数(ここでmodalも操作している)
+  plotpoint関数
 -----------------*/
 function plotpoint() {
-
-    //[緯度,経度]、名前、憩い度、来訪者、設備数、特徴数、コメント、URL
     var arrayTable = [
-            ["37.49373,139.91981", "スーパー川崎の休憩所", 4,40, [3,4,5], [1,2,3], "cm","url"],
-            ["37.50173,139.92481", "松島公園", 4,59, [1,4], [1,3], "cm","url"],
-            ["37.48273,139.93181", "金次郎像前休憩スペース", 1,9, [2,4], [2,4,3],"cm","url"],
-            ["37.49973,139.93981", "会津大学食堂",2,12, [1,3], [1,2], "cm","url"],
-            ["37.49723,139.93081", "土管が３つある空き地", 3, 31, [1,4], [3,5], "cm","url"]
+    //[緯度,経度]、名前、憩い度、来訪者、設備数、特徴数、コメント、URL
+//    arrayTable = place_search();
+//    console.log(arrayTable);
+
+            {"latlng":"37.49373,139.91981", "name":"スーパー川崎の休憩所", "star":4, "people":40, "equipment":[3, 4, 5], "feature":[1, 2, 3], "comment":"cm", "url":"url"},
+            {"latlng":"37.50173,139.92481", "name":"松島公園", "star":4, "people":59, "equipment":[1, 4], "feature":[1, 3], "comment":"cm", "url":"url"},
+            {"latlng":"37.48273,139.93181", "name":"金次郎像前休憩スペース", "star":1, "people":9, "equipment":[2, 4], "feature":[2, 4, 3], "comment":"cm", "url":"url"},
+            {"latlng":"37.49973,139.93981", "name":"会津大学食堂", "star":2, "people":12, "equipment":[1, 3], "feature":[1, 2], "comment":"cm", "url":"url"},
+            {"latlng":"37.49723,139.93081", "name":"３つの土管がある空き地", "star":3, "people":31, "equipment":[1, 4], "feature":[3, 5], "comment":"cm","url": "url"},
         ];
 
     var limit = 6;
     var content = "";
     var status;
 
-    for(var i=0;i<limit;i++){
-        var latlng = arrayTable[i][0].split(',');
+    for (var i = 0; i < limit; i++) {
+        var latlng = arrayTable[i]['latlng'].split(',');
         var myLatlng = new google.maps.LatLng(latlng[0], latlng[1]);
-        if(arrayTable[i][3]>30){ //来訪者が30人以上のとき
+        if (arrayTable[i]['people'] > 30) { //来訪者が30人以上のとき
             //名前
-            content = '<h4>' + arrayTable[i][1] + '</h4>';
+            content = '<h4>' + arrayTable[i]['name'] + '</h4>';
             //星(憩い度)
             content += '<p>憩い度：';
-            for(var j=arrayTable[i][2];j>=0;j--){
+            for (var j = arrayTable[i]['star']; j >= 0; j--) {
                 content += '<img width="32" height="32" src="./images/star.png">';
             }
             content += '<br/>';
             //訪問者数
-            content += '訪問者数：' + arrayTable[i][3] + '人<br/>' 
-            //設備
+            content += '訪問者数：' + arrayTable[i]['people'] + '人<br/>'
+                //設備
             content += '設備：';
-            var arr = arrayTable[i][4];
-            for(j=0;j<arr.length;j++){
+            var arr = arrayTable[i]['equipment'];
+            for (j = 0; j < arr.length; j++) {
                 content += switchEquipment(arr[j]);
             }
             content += '<br/>'
-            //特徴
+                //特徴
             content += '特徴：'
-            arr = arrayTable[i][5];
-            for(j=0;j<arr.length;j++){
+            arr = arrayTable[i]['feature'];
+            for (j = 0; j < arr.length; j++) {
                 content += switchFeature(arr[j]);
             }
             content += '<br/>';
-            content += 'Comment：<br/> ~~~~~~ <br/></p>';
+            content += 'Comment：<br/> 閑静な場所で、落ち着きがあります。 <br/></p>';
             content += '<img width="32" height="32" src="./images/check.png" onclick="open_modal_favorite()" />';
             status = 1;
-        }else{ //30人未満のとき
-            content = '<h4>' + arrayTable[i][1] + '</h4>';
+        } else { //30人未満のとき
+            content = '<h4>' + arrayTable[i]['name'] + '</h4>';
             //星(憩い度)
             content += '<p>憩い度：';
-            for(var j=arrayTable[i][2];j>=0;j--){
+            for (var j = arrayTable[i]['star']; j >= 0; j--) {
                 content += '<img width="32" height="32" src="./images/star.png">';
             }
             content += '<br/>';
-            content += '訪問者数：' + arrayTable[i][3] + '人<br/>' 
-            //設備
+            content += '訪問者数：' + arrayTable[i]['people'] + '人<br/>'
+                //設備
             content += '設備：';
-            arr = arrayTable[i][4];
-            for(j=0;j<arr.length;j++){
+            arr = arrayTable[i]['equipment'];
+            for (j = 0; j < arr.length; j++) {
                 content += switchEquipment(arr[j]);
             }
             content += '<br/>';
             //特徴
             content += '特徴：';
-            arr = arrayTable[i][5];
-            for(j=0;j<arr.length;j++){
+            arr = arrayTable[i]['feature'];
+            for (j = 0; j < arr.length; j++) {
                 content += switchFeature(arr[j]);
             }
             content += '<br/>';
@@ -195,51 +182,51 @@ function plotpoint() {
 }
 
 /*該当する設備を格納*/
-function switchEquipment(key){
-        switch(key){
-            case 0:
-                return '';
-                break;
-            case 1:
-                return '<img width="32" height="32" src="./images/hamburger.png">';
-                break;
-            case 2:
-                return '<img width="32" height="32" src="./images/drink.png">';
-                break;
-            case 3:
-                return '<img width="32" height="32" src="./images/sleep.png">';
-                break;
-            case 4:
-                return '<img width="32" height="32" src="./images/book.png">';
-                break;
-            case 5:
-                return '<img width="32" height="32" src="./images/pencil.png">';
-                break;
-        }
+function switchEquipment(key) {
+    switch (key) {
+    case 0:
+        return '';
+        break;
+    case 1:
+        return '<img width="32" height="32" src="./images/hamburger.png">';
+        break;
+    case 2:
+        return '<img width="32" height="32" src="./images/drink.png">';
+        break;
+    case 3:
+        return '<img width="32" height="32" src="./images/sleep.png">';
+        break;
+    case 4:
+        return '<img width="32" height="32" src="./images/book.png">';
+        break;
+    case 5:
+        return '<img width="32" height="32" src="./images/pencil.png">';
+        break;
+    }
 }
 
 /*該当する特徴を格納*/
-function switchFeature(key){
-        switch(key){
-            case 0:
-                return '';
-                break;
-            case 1:
-                return '[静]';
-                break;
-            case 2:
-                return '[広]';
-                break;
-            case 3:
-                return '[洒]';
-                break;
-            case 4:
-                return '[落]';
-                break;
-            case 5:
-                return '[楽]';
-                break;
-        }
+function switchFeature(key) {
+    switch (key) {
+    case 0:
+        return '';
+        break;
+    case 1:
+        return '[静]';
+        break;
+    case 2:
+        return '[広]';
+        break;
+    case 3:
+        return '[洒]';
+        break;
+    case 4:
+        return '[落]';
+        break;
+    case 5:
+        return '[楽]';
+        break;
+    }
 }
 
 /*マーカーを描画*/
@@ -269,7 +256,7 @@ function createMarker(latlng, content, map, status) {
         break;
     }
 
-    
+
     /* ポップアップウィンドウ*/
     var infoWindow = new google.maps.InfoWindow();
     google.maps.event.addListener(marker, 'click', function () {
@@ -284,7 +271,7 @@ function createMarker(latlng, content, map, status) {
         currentInfoWindow = infoWindow;
     });
 }
-//=====ユーザ情報========
+////=====ユーザ情報========
 //function plotself() {
 //    navigator.geolocation.watchPosition(
 //        function (position) {
