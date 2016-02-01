@@ -40,7 +40,7 @@ function place_search() {
 //            console.log(arrayTable);
             console.log(arrayTable[0].latlng.latitude);
             console.log(arrayTable.length);
-            plotpoint2();
+            plotpoint2(); //表示(app.js)
             
         },
         error: function (error) { //失敗した場合の処理
